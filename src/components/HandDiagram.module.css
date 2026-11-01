@@ -1,0 +1,47 @@
+.hand {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.hand svg {
+  width: 100%;
+  max-width: 190px;
+  height: auto;
+  overflow: visible;
+}
+
+/* Opacity on the group so overlapping palm and fingers read as one shape */
+.shape {
+  opacity: 0.14;
+}
+
+.shape rect {
+  fill: var(--ivory);
+}
+
+.digit {
+  stroke: var(--ivory);
+  stroke-width: 21;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.thumb {
+  fill: none;
+  stroke: var(--ivory);
+  stroke-width: 2;
+}
+
+.label {
+  font-family: var(--font-display), serif;
+  font-size: 19px;
+}
+
+.hand figcaption {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ivory-faint);
+}

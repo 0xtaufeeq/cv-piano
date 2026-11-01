@@ -1,0 +1,76 @@
+:root {
+  --ink: #0b0908;
+  --ink-2: #14100d;
+  --ink-3: #1f1914;
+  --ivory: #f3ead9;
+  --ivory-dim: rgba(243, 234, 217, 0.66);
+  --ivory-faint: rgba(243, 234, 217, 0.4);
+  --line: rgba(243, 234, 217, 0.13);
+  --line-strong: rgba(243, 234, 217, 0.28);
+  --brass: #e9a23b;
+  --brass-deep: #b8741a;
+  --live: #2fcfa6;
+  --alert: #ff5a3c;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius: 14px;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: var(--font-ui), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--brass);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

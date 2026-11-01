@@ -1,0 +1,33 @@
+.note {
+  position: relative;
+  display: inline-block;
+}
+
+.note[data-mark="komal"] {
+  text-decoration: underline;
+  text-decoration-thickness: 0.05em;
+  text-underline-offset: 0.12em;
+}
+
+.note[data-mark="tivra"]::before,
+.note[data-upper]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  background: currentColor;
+}
+
+.note[data-mark="tivra"]::before {
+  top: -0.06em;
+  width: 0.05em;
+  height: 0.2em;
+  transform: translateX(-50%);
+}
+
+.note[data-upper]::after {
+  top: -0.02em;
+  width: 0.13em;
+  height: 0.13em;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}

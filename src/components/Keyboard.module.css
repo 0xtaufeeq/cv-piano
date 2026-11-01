@@ -1,0 +1,223 @@
+.keyboard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(12px, 3.5vw, 56px);
+  max-width: 1360px;
+  margin-inline: auto;
+  padding: 0 clamp(12px, 3vw, 44px) clamp(14px, 3vh, 30px);
+}
+
+.group {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.groupHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ivory-dim);
+}
+
+.groupHead::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.presence {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition:
+    background 0.25s,
+    box-shadow 0.25s;
+}
+
+.presence[data-on] {
+  background: var(--live);
+  box-shadow: 0 0 0 4px rgba(47, 207, 166, 0.2);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(5px, 0.8vw, 10px);
+}
+
+.key {
+  position: relative;
+  height: clamp(104px, 19vh, 172px);
+  border-radius: 16px;
+  text-align: left;
+  touch-action: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.18s var(--ease-out);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: clamp(12px, 1.6vw, 18px) clamp(8px, 1.2vw, 16px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgba(243, 234, 217, 0.11), rgba(243, 234, 217, 0.03)),
+    rgba(11, 9, 8, 0.6);
+  backdrop-filter: blur(14px);
+  transition:
+    background 0.12s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.face::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--hue);
+}
+
+/* Fills from the bottom as the finger closes in on the thumb */
+.meter {
+  position: absolute;
+  inset: 0;
+  background: var(--hue);
+  opacity: 0.3;
+  transform-origin: bottom;
+  transform: scaleY(var(--prox, 0));
+  transition: transform 0.09s linear;
+}
+
+.name {
+  position: relative;
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.45rem, 3.4vw, 3rem);
+  line-height: 1.05;
+  color: var(--ivory);
+}
+
+.finger {
+  position: relative;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+.fingerShort {
+  display: none;
+}
+
+.kbd {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  place-items: center;
+  min-width: 23px;
+  height: 23px;
+  padding: 0 5px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  color: var(--ivory-dim);
+}
+
+.key:hover .face {
+  border-color: var(--line-strong);
+}
+
+.key[data-active] {
+  transform: translateY(-8px);
+}
+
+.key[data-active] .face {
+  border-color: transparent;
+  background: var(--hue);
+  box-shadow: 0 18px 50px -12px var(--hue);
+}
+
+.key[data-active] .meter {
+  opacity: 0;
+}
+
+.key[data-active] .name {
+  color: var(--ink);
+}
+
+.key[data-active] .finger {
+  color: rgba(11, 9, 8, 0.72);
+}
+
+.key[data-active] .kbd {
+  border-color: rgba(11, 9, 8, 0.35);
+  color: var(--ink);
+}
+
+/* Column of light rising from a sounding key */
+.beam {
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  bottom: calc(100% - 12px);
+  height: 66vh;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--hue) 62%, transparent),
+    color-mix(in srgb, var(--hue) 14%, transparent) 55%,
+    transparent 92%
+  );
+  filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease-out;
+}
+
+.key[data-active] .beam {
+  opacity: 0.9;
+  transition-duration: 0.08s;
+}
+
+@media (hover: none) {
+  .kbd {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .key {
+    height: clamp(92px, 17vh, 132px);
+    border-radius: 12px;
+  }
+
+  .face {
+    padding: 12px 6px;
+  }
+
+  .fingerFull,
+  .kbd {
+    display: none;
+  }
+
+  .fingerShort {
+    display: inline;
+  }
+}
